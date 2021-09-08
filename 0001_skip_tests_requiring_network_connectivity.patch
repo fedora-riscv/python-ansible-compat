@@ -1,0 +1,89 @@
+--- a/test/test_runtime_example.py	2021-09-01 23:02:30.378531303 +0100
++++ b/test/test_runtime_example.py	2021-09-01 23:25:30.937955862 +0100
+@@ -1,7 +1,9 @@
+ """Sample use of Runtime class."""
++import pytest
+ from ansible_compat.runtime import Runtime
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_runtime() -> None:
+     """Test basic functionality of Runtime class."""
+     # instantiate the runtime using isolated mode, so installing new
+--- a/test/test_runtime.py	2021-09-01 23:02:30.378531303 +0100
++++ b/test/test_runtime.py	2021-09-01 23:17:42.155397798 +0100
+@@ -145,6 +145,7 @@
+     runtime.cache_dir = tmp_dir
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_prepare_environment_with_collections(tmp_path: pathlib.Path) -> None:
+     """Check that collections are correctly installed."""
+     runtime = Runtime(isolated=True, project_dir=str(tmp_path))
+@@ -209,9 +210,7 @@
+     finally:
+         os.chdir(curdir)
+ 
+-
+-# # https://github.com/box/flaky/issues/170
+-@flaky(max_runs=3)  # type: ignore
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_prerun_reqs_v1(caplog: pytest.LogCaptureFixture, runtime: Runtime) -> None:
+     """Checks that the linter can auto-install requirements v1 when found."""
+     cwd = os.path.realpath(
+@@ -231,7 +230,7 @@
+     )
+ 
+ 
+-@flaky(max_runs=3)  # type: ignore
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_prerun_reqs_v2(caplog: pytest.LogCaptureFixture, runtime: Runtime) -> None:
+     """Checks that the linter can auto-install requirements v2 when found."""
+     cwd = os.path.realpath(
+@@ -358,6 +357,7 @@
+     assert os.environ["DUMMY_VAR"] == result
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_require_collection_wrong_version(runtime: Runtime) -> None:
+     """Tests behaviour of require_collection."""
+     subprocess.check_output(
+@@ -403,6 +403,7 @@
+         runtime.require_collection("foo.bar")
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_require_collection(runtime_tmp: Runtime) -> None:
+     """Check that require collection successful install case."""
+     runtime_tmp.require_collection("community.molecule", "0.1.0")
+@@ -427,11 +428,13 @@
+     assert pytest_wrapped_e.value.code == INVALID_PREREQUISITES_RC
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_install_collection(runtime: Runtime) -> None:
+     """Check that valid collection installs do not fail."""
+     runtime.install_collection("containers.podman:>=1.0")
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_install_collection_dest(runtime: Runtime, tmp_path: pathlib.Path) -> None:
+     """Check that valid collection to custom destination passes."""
+     runtime.install_collection("containers.podman:>=1.0", destination=tmp_path)
+@@ -516,7 +519,7 @@
+     assert "- acme.foo," in result.stdout
+     assert result.returncode == 0, result
+ 
+-
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_upgrade_collection(runtime_tmp: Runtime) -> None:
+     """Check that collection upgrade is possible."""
+     # ensure that we inject our tmp folders in ansible paths
+@@ -534,6 +537,7 @@
+     runtime_tmp.require_collection("containers.podman", "1.6.1")
+ 
+ 
++@pytest.mark.skip(reason="external connectivity is disabled during the build process")
+ def test_require_collection_no_cache_dir() -> None:
+     """Check require_collection without a cache directory."""
+     runtime = Runtime()
