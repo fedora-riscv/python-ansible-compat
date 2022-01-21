@@ -3,7 +3,7 @@
 
 Name:    %{pkgname}
 Version: 0.5.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Ansible python helper functions
 
 URL:       https://github.com/ansible-community/ansible-compat
@@ -80,5 +80,8 @@ PYTHONPATH=src pytest-3 test
 %endif
 
 %changelog
+* Fri Jan 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Wed Sep 01 2021 Chedi Toueiti <chedi.toueiti@gmail.com> - 0.5.0-1
 - Initial commit version 0.5.0
