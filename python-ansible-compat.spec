@@ -2,30 +2,22 @@
 %global pkgname python-ansible-compat
 
 Name:    %{pkgname}
-Version: 0.5.0
-Release: 2%{?dist}
+Version: 2.0.2
+Release: 1%{?dist}
 Summary: Ansible python helper functions
 
-URL:       https://github.com/ansible-community/ansible-compat
+URL:       https://github.com/ansible/ansible-compat
 Source0:   %{pypi_source}
 License:   MIT
 BuildArch: noarch
+BuildRequires:  pyproject-rpm-macros
 
 # This patch skips the tests requiring a connection to
 # ansible galaxy
 Patch0: 0001_skip_tests_requiring_network_connectivity.patch
 
-BuildRequires: ansible
-BuildRequires: python3-devel
-BuildRequires: python3dist(flaky)
-BuildRequires: python3dist(pyyaml)
-BuildRequires: python3dist(pytest)
-BuildRequires: python3dist(setuptools)
-BuildRequires: python3dist(pytest-mock)
-BuildRequires: python3-setuptools_scm+toml
-
 Requires: python3dist(pyyaml)
-Requires: python3dist(cached_property)
+Requires: python3dist(subprocess-tee)
 
 %description
 A python package containing functions that help interacting with
@@ -52,8 +44,11 @@ various versions of Ansible
 %prep
 %autosetup -p1 -n %{srcname}-%{version}
 
+%generate_buildrequires
+%pyproject_buildrequires -r
+
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if %{with doc}
 PYTHONPATH=src sphinx-build-3 docs html
@@ -61,15 +56,16 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%pyproject_install
 
 %check
-PYTHONPATH=src pytest-3 test
-
+# Disable tests as pip-tools, pytest-markdown 
+# and pytest-plus not in Fedora yet
+#PYTHONPATH=src %{python3} -m pytest -vv
 
 %files -n python3-%{srcname}
 %license LICENSE
-%{python3_sitelib}/ansible_compat-%{version}-py%{python3_version}.egg-info
+%{python3_sitelib}/ansible_compat-%{version}.dist-info/
 %{python3_sitelib}/ansible_compat/
 
 %if %{with doc}
@@ -80,6 +76,9 @@ PYTHONPATH=src pytest-3 test
 %endif
 
 %changelog
+* Wed Mar 23 2022 Parag Nemade <pnemade AT redhat DOT com> - 2.0.2-1
+- Update to 2.0.2 version
+
 * Fri Jan 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.5.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
