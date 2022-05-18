@@ -2,7 +2,7 @@
 %global pkgname python-ansible-compat
 
 Name:    %{pkgname}
-Version: 2.0.3
+Version: 2.0.4
 Release: 1%{?dist}
 Summary: Ansible python helper functions
 
@@ -76,6 +76,9 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %changelog
+* Wed May 18 2022 Chedi Toueiti <chedi.toueiti@gmail.com> - 2.0.4-1
+- Update to 2.0.4
+
 * Wed May 18 2022 Chedi Toueiti <chedi.toueiti@gmail.com> - 2.0.3-1
 - Update to 2.0.3
 
