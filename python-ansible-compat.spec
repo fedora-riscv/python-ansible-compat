@@ -2,7 +2,7 @@
 %global pkgname python-ansible-compat
 
 Name:    %{pkgname}
-Version: 2.0.2
+Version: 2.0.3
 Release: 1%{?dist}
 Summary: Ansible python helper functions
 
@@ -59,7 +59,7 @@ rm -rf html/.{doctrees,buildinfo}
 %pyproject_install
 
 %check
-# Disable tests as pip-tools, pytest-markdown 
+# Disable tests as pip-tools, pytest-markdown
 # and pytest-plus not in Fedora yet
 #PYTHONPATH=src %{python3} -m pytest -vv
 
@@ -76,6 +76,9 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %changelog
+* Wed May 18 2022 Chedi Toueiti <chedi.toueiti@gmail.com> - 2.0.3-1
+- Update to 2.0.3
+
 * Wed Mar 23 2022 Parag Nemade <pnemade AT redhat DOT com> - 2.0.2-1
 - Update to 2.0.2 version
 
