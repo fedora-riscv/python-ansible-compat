@@ -3,7 +3,7 @@
 
 Name:    %{pkgname}
 Version: 2.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Ansible python helper functions
 
 URL:       https://github.com/ansible/ansible-compat
@@ -76,6 +76,9 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %changelog
+* Tue Jun 14 2022 Python Maint <python-maint@redhat.com> - 2.0.4-2
+- Rebuilt for Python 3.11
+
 * Wed May 18 2022 Chedi Toueiti <chedi.toueiti@gmail.com> - 2.0.4-1
 - Update to 2.0.4
 
