@@ -16,6 +16,8 @@ License:   MIT
 BuildArch: noarch
 
 BuildRequires: pyproject-rpm-macros
+BuildRequires: ansible-core
+BuildRequires: python3dist(flaky)
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(pytest-mock)
 
@@ -67,7 +69,9 @@ rm -rf html/.{doctrees,buildinfo}
 PYTHONPATH=src %{python3} -m pytest -vv test
 %endif
 
-%files -n python3-%{srcname} -f %{pyproject_files}
+%files -n python3-%{srcname}
+%{python3_sitelib}/ansible_compat/
+%{python3_sitelib}/ansible_compat-*.dist-info/
 %license LICENSE
 
 %if %{with doc}
