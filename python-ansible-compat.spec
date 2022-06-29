@@ -2,8 +2,8 @@
 %global pkgname python-ansible-compat
 
 Name:    %{pkgname}
-Version: 2.0.4
-Release: 2%{?dist}
+Version: 2.1.0
+Release: 1%{?dist}
 Summary: Ansible python helper functions
 
 URL:       https://github.com/ansible/ansible-compat
@@ -76,6 +76,9 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %changelog
+* Wed Jun 29 2022 Parag Nemade <pnemade AT redhat DOT com> - 2.1.0-1
+- Update to 2.1.0
+
 * Tue Jun 14 2022 Python Maint <python-maint@redhat.com> - 2.0.4-2
 - Rebuilt for Python 3.11
 
