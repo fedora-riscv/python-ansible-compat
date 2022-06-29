@@ -14,7 +14,10 @@ URL:       %{forgeurl}
 Source0:   %{pypi_source}
 License:   MIT
 BuildArch: noarch
-BuildRequires:  pyproject-rpm-macros
+
+BuildRequires: pyproject-rpm-macros
+BuildRequires: python3dist(pytest)
+BuildRequires: python3dist(pytest-mock)
 
 # This patch skips the tests requiring a connection to
 # ansible galaxy
