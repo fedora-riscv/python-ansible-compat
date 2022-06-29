@@ -64,7 +64,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with tests}
 %check
-PYTHONPATH=src %{python3} -m pytest -vv
+PYTHONPATH=src %{python3} -m pytest -vv test
 %endif
 
 %files -n python3-%{srcname} -f %{pyproject_files}
