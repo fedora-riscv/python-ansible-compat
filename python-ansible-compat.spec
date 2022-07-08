@@ -2,7 +2,7 @@
 %global pkgname python-ansible-compat
 %global forgeurl https://github.com/ansible/ansible-compat
 
-%bcond_without tests
+%bcond_with tests
 
 Name:    %{pkgname}
 Version: 2.1.0
@@ -17,12 +17,6 @@ BuildArch: noarch
 
 BuildRequires: pyproject-rpm-macros
 BuildRequires: ansible-core
-
-%if %{with tests}
-BuildRequires: python3dist(flaky)
-BuildRequires: python3dist(pytest)
-BuildRequires: python3dist(pytest-mock)
-%endif
 
 # This patch skips the tests requiring a connection to
 # ansible galaxy
