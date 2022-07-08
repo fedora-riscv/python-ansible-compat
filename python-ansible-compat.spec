@@ -17,9 +17,12 @@ BuildArch: noarch
 
 BuildRequires: pyproject-rpm-macros
 BuildRequires: ansible-core
+
+%if %{with tests}
 BuildRequires: python3dist(flaky)
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(pytest-mock)
+%endif
 
 # This patch skips the tests requiring a connection to
 # ansible galaxy
