@@ -23,8 +23,6 @@ BuildRequires: python3dist(pytest-mock)
 # ansible galaxy
 Patch0: 0001_skip_tests_requiring_network_connectivity.patch
 
-Requires: python3dist(pyyaml)
-Requires: python3dist(subprocess-tee)
 
 %global common_description %{expand:
 A python package containing functions that help interacting with
