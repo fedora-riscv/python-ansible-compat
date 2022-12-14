@@ -56,6 +56,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %pyproject_install
+%pyproject_save_files ansible_compat
 
 %if %{with tests}
 %check
@@ -76,9 +77,7 @@ rm -rf html/.{doctrees,buildinfo}
     }
 %endif
 
-%files -n python3-%{srcname}
-%{python3_sitelib}/ansible_compat/
-%{python3_sitelib}/ansible_compat-*.dist-info/
+%files -n python3-%{srcname} -f %{pyproject_files}
 %license LICENSE
 
 %if %{with doc}
