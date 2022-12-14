@@ -9,7 +9,7 @@ Release: %autorelease
 Summary: Ansible python helper functions
 
 URL:       https://github.com/ansible/ansible-compat
-Source0:   %{pypi_source}
+Source0:   %{pypi_source ansible-compat}
 License:   MIT
 BuildArch: noarch
 
