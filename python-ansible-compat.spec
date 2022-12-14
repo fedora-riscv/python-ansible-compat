@@ -6,7 +6,6 @@
 
 Name:    %{pkgname}
 Version: 2.2.7
-%forgemeta
 Release: %autorelease
 Summary: Ansible python helper functions
 
