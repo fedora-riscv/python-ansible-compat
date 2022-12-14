@@ -1,6 +1,5 @@
 %global srcname ansible-compat
 %global pkgname python-ansible-compat
-%global forgeurl https://github.com/ansible/ansible-compat
 
 %bcond_without tests
 
@@ -9,7 +8,7 @@ Version: 2.2.7
 Release: %autorelease
 Summary: Ansible python helper functions
 
-URL:       %{forgeurl}
+URL:       https://github.com/ansible/ansible-compat
 Source0:   %{pypi_source}
 License:   MIT
 BuildArch: noarch
