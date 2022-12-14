@@ -37,7 +37,6 @@ Documentation for python-ansible-compat
 %package -n python3-%{srcname}
 Summary: %summary
 
-%py_provides python3-%{srcname}
 
 %description -n python3-%{srcname} %{common_description}
 
