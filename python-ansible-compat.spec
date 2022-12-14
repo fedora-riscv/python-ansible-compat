@@ -19,10 +19,6 @@ BuildRequires: python3dist(flaky)
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(pytest-mock)
 
-# This patch skips the tests requiring a connection to
-# ansible galaxy
-Patch0: 0001_skip_tests_requiring_network_connectivity.patch
-
 
 %global common_description %{expand:
 A python package containing functions that help interacting with
@@ -62,7 +58,21 @@ rm -rf html/.{doctrees,buildinfo}
 
 %if %{with tests}
 %check
-PYTHONPATH=src %{python3} -m pytest -vv test
+%pytest -vv test -k \
+    %{shrink:
+        '
+        not test_prepare_environment_with_collections
+        and not test_prerun_reqs_v1
+        and not test_prerun_reqs_v2
+        and not test_require_collection_wrong_version
+        and not test_require_collection
+        and not test_install_collection
+        and not test_install_collection_dest
+        and not test_upgrade_collection
+        and not test_require_collection_no_cache_dir
+        and not test_runtime_run
+        '
+    }
 %endif
 
 %files -n python3-%{srcname}
