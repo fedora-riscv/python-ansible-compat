@@ -15,10 +15,12 @@ BuildArch: noarch
 
 BuildRequires: pyproject-rpm-macros
 BuildRequires: ansible-core
+
+%if %{with tests}
 BuildRequires: python3dist(flaky)
 BuildRequires: python3dist(pytest)
 BuildRequires: python3dist(pytest-mock)
-
+%endif
 
 %global common_description %{expand:
 A python package containing functions that help interacting with
@@ -43,7 +45,7 @@ Summary: %summary
 %autosetup -p1 -n %{srcname}-%{version}
 
 %generate_buildrequires
-%pyproject_buildrequires -r %{?with_tests:-x testing}
+%pyproject_buildrequires
 
 %build
 %pyproject_wheel
