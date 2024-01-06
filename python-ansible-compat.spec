@@ -5,7 +5,7 @@
 
 Name:    %{pkgname}
 Version: 4.1.1
-Release: %autorelease
+Release: %autorelease -e rv64
 Summary: Ansible python helper functions
 
 URL:       https://github.com/ansible/ansible-compat
